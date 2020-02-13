@@ -1,0 +1,2 @@
+:
+# ansible-cluster-vagrant-dockerswarm
