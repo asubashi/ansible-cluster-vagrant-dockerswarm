@@ -1,0 +1,8 @@
+
+---
+# packages to download 
+PACKAGES:
+  - vim
+  - htop
+  - tmux
+  - docker-ce
