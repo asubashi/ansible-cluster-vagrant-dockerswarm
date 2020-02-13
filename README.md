@@ -23,11 +23,11 @@ Through the Vagrant script (_Vagrantfile_) we provision four identical Linux mac
 
 ```ruby
 nodes = [
-  { :hostname => 'swarm-master-1', :ip => '192.168.77.10', :ram => 1024, :cpus => 1 },
-  { :hostname => 'swarm-master-2', :ip => '192.168.77.11', :ram => 1024, :cpus => 1 },
-  { :hostname => 'swarm-worker-3', :ip => '192.168.77.14', :ram => 1024, :cpus => 1 },
-  { :hostname => 'swarm-worker-1', :ip => '192.168.77.12', :ram => 1024, :cpus => 1 },
-  { :hostname => 'swarm-worker-2', :ip => '192.168.77.13', :ram => 1024, :cpus => 1 }
+  { :hostname => 'swarm-master-1', :ip => '192.168.77.10', :ram => 2048, :cpus => 1 },
+  { :hostname => 'swarm-master-2', :ip => '192.168.77.11', :ram => 2048, :cpus => 1 },
+  { :hostname => 'swarm-worker-3', :ip => '192.168.77.14', :ram => 2048, :cpus => 1 },
+  { :hostname => 'swarm-worker-1', :ip => '192.168.77.12', :ram => 2048, :cpus => 1 },
+  { :hostname => 'swarm-worker-2', :ip => '192.168.77.13', :ram => 2048, :cpus => 1 }
 ]
 
 Vagrant.configure("2") do |config|
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
       nodeconfig.vm.box = "bento/ubuntu-18.04";
       nodeconfig.vm.hostname = node[:hostname] + ".box"
       nodeconfig.vm.network :private_network, ip: node[:ip]
-      memory = node[:ram] ? node[:ram] : 1024;
+      memory = node[:ram] ? node[:ram] : 2048;
       cpus = node[:cpus] ? node[:cpus] : 1;
       nodeconfig.vm.provider :virtualbox do |vb|
         vb.customize [
