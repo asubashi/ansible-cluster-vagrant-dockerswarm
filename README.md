@@ -107,10 +107,6 @@ The second playbook, _master.yaml_, initializes the Docker Swarm, and configures
       args:
         chdir: $HOME
         creates: cluster_initialized.txt
-
-      args:
-        chdir: $HOME
-        creates: cluster_initialized.txt
 ```
 
 The last playbook, _join.yaml_, sets up the actual Docker Swarm as composed of four hosts - three masters (so that the manager role is redunded) and two workers. In order to achieve that, two _join-tokens_ (one to join the cluster as a manager, and one to join the cluster as a worker) are generated on the host which initialized the swarm, and automatically passed to the remaining three hosts.
@@ -209,6 +205,8 @@ $ vagrant ssh swarm-master-1
 ```
 
 On this node, which acts as a Swarm Manager, all nodes are now shown in the inventory:
+
+when you run all ansible playbooks it should show all nodes running. Below is only the output which is the leader in master nodes, without including the worker nodes. 
 
 ```sh
 root@swarm-master-1:~# docker node ls
