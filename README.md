@@ -468,3 +468,46 @@ These are all the metrics published by the Prometheus endpoint.
 
 . Switch from `Console` to `Graph`
 
+
+
+
+## Method solution — Open Docker Swarm Ports Using FirewallD
+
+FirewallD is the default firewall application on Ubuntu VM. In case it is not,let’s enable it and add the network ports necessary for Docker Swarm to function.
+
+Before starting, verify its status:
+```sh
+systemctl status firewalld
+```
+
+It should not be running, so start it:
+```sh
+systemctl start firewalld
+```
+
+Then enable it so that it starts on boot:
+```sh
+systemctl enable firewalld
+```
+
+On the node that will be a Swarm manager, use the following commands to open the necessary ports:
+
+```sh
+firewall-cmd --add-port=8080/tcp --permanent
+```
+Note: If you make a mistake and need to remove an entry, type:
+
+```sh
+firewall-cmd --remove-port=port-number/tcp —permanent.
+```
+
+Afterwards, reload the firewall:
+
+```sh
+firewall-cmd --reload
+```
+Then restart Docker.
+```sh
+systemctl restart docker
+```
+
